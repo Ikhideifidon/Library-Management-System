@@ -57,6 +57,15 @@ public class Edition {
     @JoinColumn(name = "book_id")
     private Book book;
 
+    @Column(name = "total_copies")
+    private int totalCopies;
+
+    @Column(name = "available_copies")
+    private int availableCopies;
+
+    public boolean isAvailability() {
+        return availableCopies > 0;
+    }
 }
 
 enum CoverType {

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Formula;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,9 +30,6 @@ public class Book {
     @Column(name = "subject_headings")
     private String subjectHeadings;
 
-    @Column(name = "availability")
-    private boolean availability;
-
     @Column(name = "awards")
     private String awards;
 
@@ -51,6 +49,14 @@ public class Book {
     // One-To-Many relationship between a book and its authors
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<BookAuthor> bookAuthorSet = new HashSet<>();
+
+    @Formula("(SELECT COUNT(*) FROM editions WHERE editions.book_id = book_id AND editions.availability = true) > 0")
+    private boolean availability;
+
+    // getter and setter for availability field
+    public boolean isAvailability() {
+        return availability;
+    }
 
 
 }
