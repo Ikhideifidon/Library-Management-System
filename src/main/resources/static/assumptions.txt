@@ -1,0 +1,6 @@
+1. I have assumed that the author(s) of a particular book do(es) not change with respect
+to its edition(s).
+
+2. I have assumed that the formats of a particular book can change with respect to a change in its edition.
+3. I have assumed that the formats of a particular book cannot grow beyond the enumerated formats (total of 10 in this software).
+3. I have assumed that the growth of a particular book with respect to its edition
