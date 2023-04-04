@@ -1,10 +1,13 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
+import com.github.ifidonIkhide.Library.Management.System.embedded.Address;
+import com.github.ifidonIkhide.Library.Management.System.embedded.Person;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,23 +22,20 @@ public class Patron {
     @Column(name = "patron_id")
     private long id;
 
-    @Column(name = "address")
-    private String address;
+    @Embedded
+    private Person person;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "user_image_url")
+    private String userImageUrl = "https://example.com/default-image.jpg";
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
+    @Embedded
+    private Address address;
 
     @Column(name = "library_card_number")
     private String libraryCardNumber;
 
     @Column(name = "account_balance")
     private float accountBalance;
-
-    @Column(name = "name")
-    private String name;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "account_status")
@@ -45,7 +45,13 @@ public class Patron {
     private boolean isStaff;
 
     @OneToMany(mappedBy = "patron")  // "patron" refers to the patron field in the "Loan" entity
-    Set<Loan> loans;
+    Set<Loan> loans = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "subscription_id")
+    private Subscription subscription;
+
+    // Patron loan eligibility
 
 }
 

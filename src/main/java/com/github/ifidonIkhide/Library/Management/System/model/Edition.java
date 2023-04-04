@@ -22,11 +22,7 @@ public class Edition {
     @Column(name = "edition_number")
     private String editionNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id")
-    private Author author;
-
-    @Column(name = "publication_date")
+    @Column(name = "publication_date", nullable = false)
     private LocalDate publicationDate;
 
     @Column(name = "isbn")
@@ -53,8 +49,9 @@ public class Edition {
     @Column(name = "notes")
     private String notes;
 
+    // Many-To-One Relationship between a book edition and the book
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id", insertable = false, updatable = false)
     private Book book;
 
     @Column(name = "total_copies")

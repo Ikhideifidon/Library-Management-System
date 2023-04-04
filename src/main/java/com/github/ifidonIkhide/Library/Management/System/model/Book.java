@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Formula;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,11 +16,12 @@ import java.util.Set;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
     private long id;
 
-    @Column(name = "title")
+
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "call_number")
@@ -33,6 +33,9 @@ public class Book {
     @Column(name = "awards")
     private String awards;
 
+    @Column(name = "available_copies")
+    private int availableCopies;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "genres")
     private Genre genre;
@@ -42,22 +45,26 @@ public class Book {
     private Set<Edition> editions = new HashSet<>();
 
     // Many-To-One relationship between Books and a publisher
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "publisher_id", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
-    // One-To-Many relationship between a book and its authors
+    // Many-To-Many relationship between a book and its authors
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<BookAuthor> bookAuthorSet = new HashSet<>();
+    private Set<AuthorRole> authorRoles = new HashSet<>();
 
-    @Formula("(SELECT COUNT(*) FROM editions WHERE editions.book_id = book_id AND editions.availability = true) > 0")
-    private boolean availability;
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<BookCopy> bookCopies = new HashSet<>();
 
-    // getter and setter for availability field
-    public boolean isAvailability() {
-        return availability;
+    //...........................UX...............................
+    // How many edition does this book have?
+    @Transient
+    private int numberOfEditions;
+
+    @PostLoad
+    public void setNumberOfEditions() {
+        numberOfEditions = editions.size();
     }
-
 
 }
 

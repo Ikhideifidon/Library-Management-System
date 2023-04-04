@@ -1,13 +1,15 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
+import com.github.ifidonIkhide.Library.Management.System.embedded.Address;
+import com.github.ifidonIkhide.Library.Management.System.embedded.Person;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "authors")
@@ -17,20 +19,17 @@ import java.util.Set;
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "author_id")
     private int id;
 
-    @Column(name = "name")
-    private String name;
+    @Embedded
+    private Person person;
 
-    @Column(name = "email")
-    private String email;
+    @Embedded
+    private Address address;
 
-    @Column(name = "date_of_birth")
-    private LocalDate birthDate;
-
-    // One-To-Many relationship between authors and BookAuthor
-    @OneToMany(mappedBy = "author")   // "author" refers to the author field in the "BookAuthor" bridge entity
-    private Set<BookAuthor> bookAuthorSet = new HashSet<>();
+    // Many-To-Many relationship between Author and Book
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)   // "author" refers to the author field in the "BookAuthor" bridge entity
+    private List<AuthorRole> authorRoles = new ArrayList<>();
 }

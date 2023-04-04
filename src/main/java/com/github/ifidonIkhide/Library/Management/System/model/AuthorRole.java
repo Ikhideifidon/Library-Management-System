@@ -1,6 +1,6 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
-import com.github.ifidonIkhide.Library.Management.System.embedded.BookAuthorId;
+import com.github.ifidonIkhide.Library.Management.System.embedded.BookAuthorKey;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,25 +13,25 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookAuthor {
+public class AuthorRole {
 
     @EmbeddedId
-    private BookAuthorId id;
+    private BookAuthorKey id;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id", referencedColumnName = "book_id", insertable = false, updatable = false)
     private Book book;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id", referencedColumnName = "author_id", insertable = false, updatable = false)
     private Author author;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private AuthorRole role;
+    private Role role;
 }
 
-enum AuthorRole {
+enum Role {
     AUTHOR,
     EDITOR,
     TRANSLATOR,
