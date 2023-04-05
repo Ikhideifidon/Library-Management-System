@@ -1,5 +1,8 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.CoverType;
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.Format;
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.Language;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -63,33 +66,5 @@ public class Edition {
     public boolean isAvailability() {
         return availableCopies > 0;
     }
-}
-
-enum CoverType {
-    HARDCOVER,
-    PAPERBACK,
-    EBOOK,
-
-}
-
-enum Format {
-    HARDCOVER,
-    KINDLE,
-    PDF,
-    EPUB,
-    AUDIOBOOK,
-    LARGE_PRINT,
-    BRAILLE,
-    MAGAZINE,
-    JOURNAL,
-    REFERENCE_BOOK
-}
-
-enum Language {
-    ENGLISH,
-    FRENCH,
-    GERMAN,
-    SPANISH,
-    OTHER
 }
 

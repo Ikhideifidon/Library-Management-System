@@ -1,7 +1,8 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
-import com.github.ifidonIkhide.Library.Management.System.embedded.Address;
-import com.github.ifidonIkhide.Library.Management.System.embedded.Person;
+import com.github.ifidonIkhide.Library.Management.System.model.embedded.Address;
+import com.github.ifidonIkhide.Library.Management.System.model.embedded.Person;
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.PatronStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class Patron {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "patron_id")
-    private long id;
+    private Integer id;
 
     @Embedded
     private Person person;
@@ -53,11 +54,4 @@ public class Patron {
 
     // Patron loan eligibility
 
-}
-
-
-enum PatronStatus {
-    ACTIVE,
-    INACTIVE,
-    SUSPENDED,
 }

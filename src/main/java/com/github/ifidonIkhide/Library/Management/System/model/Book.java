@@ -1,13 +1,16 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.Genre;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@NonNull
 @Entity
 @Table(name = "books")
 @Data
@@ -66,17 +69,4 @@ public class Book {
         numberOfEditions = editions.size();
     }
 
-}
-
-enum Genre {
-    FICTION,
-    NON_FICTION,
-    CHILDREN_BOOKS,
-    POETRY,
-    DRAMA,
-    GRAPHIC_NOVELS_AND_COMICS,
-    ROMANCE,
-    MYSTERY_AND_CRIMES,
-    SCIENCE_FICTION_AND_FANTASY,
-    HORROR
 }

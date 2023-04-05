@@ -4,3 +4,7 @@ to its edition(s).
 2. I have assumed that the formats of a particular book can change with respect to a change in its edition.
 3. I have assumed that the formats of a particular book cannot grow beyond the enumerated formats (total of 10 in this software).
 3. I have assumed that the growth of a particular book with respect to its edition
+
+
+ENUM and @ElementCollection(): This approach can be useful when you need to store a collection of values that
+cannot be defined as an Enum, such as a collection of strings or integers.

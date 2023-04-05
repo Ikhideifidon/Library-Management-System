@@ -1,6 +1,7 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
 
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.LoanStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -102,10 +103,4 @@ public class Loan {
             status = LoanStatus.ACTIVE;
     }
 
-}
-
-enum LoanStatus {
-    ACTIVE,
-    OVERDUE,
-    RETURNED
 }

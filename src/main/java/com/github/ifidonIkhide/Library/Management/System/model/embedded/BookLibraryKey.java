@@ -1,4 +1,5 @@
-package com.github.ifidonIkhide.Library.Management.System.embedded;
+package com.github.ifidonIkhide.Library.Management.System.model.embedded;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -8,19 +9,15 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-/**
- * This Embeddable class is a type of Many-To-Many relationship with no attribute
- */
 @Embeddable
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookAuthorKey implements Serializable {
-
+public class BookLibraryKey implements Serializable {
 
     @Column(name = "book_id")
     private long bookId;
 
-    @Column(name = "author_id")
-    private int authorId;
+    @Column(name = "library_id")
+    private int libraryId;
 }

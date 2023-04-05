@@ -1,6 +1,7 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
 
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.SubscriptionName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,20 +43,3 @@ public class Subscription {
     private Set<Patron> user = new HashSet<>();
 }
 
-enum SubscriptionName {
-    BASIC("Basic"),
-    PREMIUM("Premium"),
-    GOLD("Gold");
-
-    private final String displayName;
-
-    SubscriptionName(String displayName) {
-        this.displayName = displayName;
-    }
-
-
-    // .................................................UX.......................................
-    public String getDisplayName() {
-        return displayName;
-    }
-}

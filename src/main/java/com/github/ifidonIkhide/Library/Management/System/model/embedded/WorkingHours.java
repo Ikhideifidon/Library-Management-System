@@ -1,4 +1,4 @@
-package com.github.ifidonIkhide.Library.Management.System.embedded;
+package com.github.ifidonIkhide.Library.Management.System.model.embedded;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

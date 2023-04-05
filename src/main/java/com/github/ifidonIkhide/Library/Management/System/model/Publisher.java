@@ -1,6 +1,6 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
-import com.github.ifidonIkhide.Library.Management.System.embedded.Address;
+import com.github.ifidonIkhide.Library.Management.System.model.embedded.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

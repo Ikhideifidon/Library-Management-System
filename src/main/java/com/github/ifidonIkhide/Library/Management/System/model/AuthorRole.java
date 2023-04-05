@@ -1,6 +1,7 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
-import com.github.ifidonIkhide.Library.Management.System.embedded.BookAuthorKey;
+import com.github.ifidonIkhide.Library.Management.System.model.embedded.BookAuthorKey;
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,11 +30,4 @@ public class AuthorRole {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
-}
-
-enum Role {
-    AUTHOR,
-    EDITOR,
-    TRANSLATOR,
-    CONTRIBUTOR
 }

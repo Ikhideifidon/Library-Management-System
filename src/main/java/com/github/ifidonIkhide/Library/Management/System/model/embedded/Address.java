@@ -1,5 +1,6 @@
-package com.github.ifidonIkhide.Library.Management.System.embedded;
+package com.github.ifidonIkhide.Library.Management.System.model.embedded;
 
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.AddressType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
@@ -33,13 +34,6 @@ public class Address {
     @Column(name = "address_type")
     private AddressType type;
 
-}
-
-enum AddressType {
-    HOME,
-    WORK,
-    SHIPPING,
-    BILLING
 }
 
 

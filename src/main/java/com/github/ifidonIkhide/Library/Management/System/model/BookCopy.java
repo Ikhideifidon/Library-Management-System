@@ -1,7 +1,7 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
 
-import com.github.ifidonIkhide.Library.Management.System.embedded.BookLibraryKey;
+import com.github.ifidonIkhide.Library.Management.System.model.embedded.BookLibraryKey;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,17 +19,17 @@ public class BookCopy {
     @EmbeddedId
     private BookLibraryKey id;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("bookId")
     @JoinColumn(name = "book_id",  referencedColumnName = "book_id", insertable = false, updatable = false)
     private Book book;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("libraryId")
     @JoinColumn(name = "library_id", referencedColumnName = "library_id", insertable = false, updatable = false)
     private Library library;
 
-    @Column(name = "number_of_copies")
+    @Column(name = "number_of_copies", nullable = false)
     private int numberOfCopies;
 }
 

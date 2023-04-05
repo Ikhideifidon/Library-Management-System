@@ -1,5 +1,7 @@
-package com.github.ifidonIkhide.Library.Management.System.embedded;
+package com.github.ifidonIkhide.Library.Management.System.model.embedded;
 
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.Contact;
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,24 +39,4 @@ public class Person {
     @ElementCollection
     private List<Phone> phones = new ArrayList<>();
 
-}
-
-enum Gender {
-    MALE,
-    FEMALE
-}
-
-enum Contact {
-    MOBILE,
-    HOME,
-    WORK,
-}
-
-@Embeddable
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-class Phone {
-    private String number;
-    private Contact type;
 }
