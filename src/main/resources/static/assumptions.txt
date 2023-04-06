@@ -8,3 +8,7 @@ to its edition(s).
 
 ENUM and @ElementCollection(): This approach can be useful when you need to store a collection of values that
 cannot be defined as an Enum, such as a collection of strings or integers.
+
+As a Manager or Supervisor, you must be a full time employer with a monthly pay frequency.
+
+I want Each Manager to have both office and Home addresses. But only Office Address should be persisted.

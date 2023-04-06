@@ -15,7 +15,7 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployerSchedule {
+public class EmployeeSchedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +26,9 @@ public class EmployerSchedule {
     @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
     private Employee employee;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "supervisor_id", referencedColumnName = "supervisor_id")
-    private Supervisor supervisor;
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+//    private Supervisor supervisor;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "day_of_week")

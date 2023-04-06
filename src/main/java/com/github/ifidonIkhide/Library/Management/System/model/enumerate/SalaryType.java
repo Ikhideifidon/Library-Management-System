@@ -1,6 +1,6 @@
 package com.github.ifidonIkhide.Library.Management.System.model.enumerate;
 
-public enum Salary {
+public enum SalaryType {
     HOURLY("Hourly"),
     DAILY("Daily"),
     WEEKLY("Weekly"),
@@ -8,7 +8,7 @@ public enum Salary {
 
     private String displayName;
 
-    Salary(String displayName) {
+    SalaryType(String displayName) {
         this.displayName = displayName;
     }
 
