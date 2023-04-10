@@ -19,7 +19,7 @@ import java.util.Set;
 public class Patron {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "patron_id")
     private Integer id;
 
@@ -52,6 +52,8 @@ public class Patron {
     @JoinColumn(name = "subscription_id")
     private Subscription subscription;
 
-    // Patron loan eligibility
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "emergency_id")
+    private EmergencyContact emergencyContact;
 
 }
