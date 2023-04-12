@@ -21,7 +21,7 @@ public class Patron {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "patron_id")
-    private Integer id;
+    private Long id;
 
     @Embedded
     private Person person;
@@ -45,10 +45,13 @@ public class Patron {
     @Column(name = "is_staff")
     private boolean isStaff;
 
-    @OneToMany(mappedBy = "patron")  // "patron" refers to the patron field in the "Loan" entity
+    @OneToMany(mappedBy = "patron", cascade = CascadeType.ALL)
+    private Set<LibraryVisit> librariesUsedByPatron = new HashSet<>();
+
+    @OneToMany(mappedBy = "patron", cascade = CascadeType.ALL)  // "patron" refers to the patron field in the "Loan" entity
     Set<Loan> loans = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subscription_id")
     private Subscription subscription;
 

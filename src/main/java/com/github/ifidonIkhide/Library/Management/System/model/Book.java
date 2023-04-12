@@ -21,8 +21,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
-    private long id;
-
+    private Long id;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -48,16 +47,17 @@ public class Book {
     private Set<Edition> editions = new HashSet<>();
 
     // Many-To-One relationship between Books and a publisher
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "publisher_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "publisher_id", referencedColumnName = "publisher_id")
     private Publisher publisher;
 
     // Many-To-Many relationship between a book and its authors
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<AuthorRole> authorRoles = new HashSet<>();
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<BookCopy> bookCopies = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "library_id", referencedColumnName = "library_id")
+    private Library library;
 
     //...........................UX...............................
     // How many edition does this book have?

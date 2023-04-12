@@ -20,10 +20,12 @@ public class AuthorRole {
     private BookAuthorKey id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("bookId")
     @JoinColumn(name = "book_id", referencedColumnName = "book_id", insertable = false, updatable = false)
     private Book book;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @MapsId("authorId")
     @JoinColumn(name = "author_id", referencedColumnName = "author_id", insertable = false, updatable = false)
     private Author author;
 

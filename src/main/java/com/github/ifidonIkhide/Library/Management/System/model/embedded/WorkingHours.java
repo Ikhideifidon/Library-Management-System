@@ -1,14 +1,13 @@
 package com.github.ifidonIkhide.Library.Management.System.model.embedded;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 @Embeddable
@@ -18,13 +17,16 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class WorkingHours {
 
+    @NotNull(message = "Day of the week cannot be null")
     @Column(name = "day_of_week")
-    private int dayOfWeek;
+    private DayOfWeek dayOfWeek;
 
+    @NotNull(message = "Opening time cannot be null")
     @Temporal(TemporalType.TIME)
     @Column(name = "opening_time")
     private LocalTime openingTime;
 
+    @NotNull(message = "Closing time cannot be null")
     @Temporal(TemporalType.TIME)
     @Column(name = "closing_time")
     private LocalTime closingTime;

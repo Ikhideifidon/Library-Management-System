@@ -22,15 +22,7 @@ public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "loan_id")
-    private int loanId;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "patron_id")
-    private Patron patron;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "book_id")
-    private Book book;
+    private Long loanId;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "loan_date", nullable = false)
@@ -44,14 +36,26 @@ public class Loan {
     @Column(name = "returned_date")
     private LocalDate returnedDate;
 
-    //Many-To-Many Relational relationship between Loan and Library
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "library_id")
-    private Library library;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private LoanStatus status;
+
+    // Who can loan?
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "patron_id")
+    private Patron patron;
+
+    // What can be loaned?
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "book_id")
+    private Book book;
+
+    // Where can it be loaned?
+    //Many-To-Many Relational relationship between Loan and Library
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "library_id")
+    private Library library;
+
 
     // Check if this book is loanable. Condition available book > 5
     // Check if this patron has previously loaned this book and, he is yet to return it.

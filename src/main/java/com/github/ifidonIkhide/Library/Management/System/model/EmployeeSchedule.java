@@ -1,13 +1,11 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
+import com.github.ifidonIkhide.Library.Management.System.model.embedded.WorkingHours;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
-import java.time.DayOfWeek;
-import java.time.LocalTime;
 
 @NonNull
 @Entity
@@ -26,21 +24,8 @@ public class EmployeeSchedule {
     @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
     private Employee employee;
 
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
-//    private Supervisor supervisor;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "day_of_week")
-    private DayOfWeek dayOfWeek;
-
-    @Temporal(TemporalType.TIME)
-    @Column(name = "start_time")
-    private LocalTime startTime;
-
-    @Temporal(TemporalType.TIME)
-    @Column(name = "end_time")
-    private LocalTime endTime;
+    @Embedded
+    private WorkingHours workingHours;
 
 
 

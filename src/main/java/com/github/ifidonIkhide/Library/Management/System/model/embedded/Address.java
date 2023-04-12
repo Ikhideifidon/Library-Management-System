@@ -5,10 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Address {
 
-    @Min(value = 1, message = "House number must be a positive integer")
+    @Size(min = 1, max = 99999, message = "House number must be a positive integer within 1 and 99999")
     @Column(name = "house_number", nullable = false, length = 5)
     private int houseNumber;
 
@@ -36,11 +33,13 @@ public class Address {
     @Column(name = "state", nullable = false, length = 2)
     private String state;
 
+    @NotBlank
+    @Size(min = 5, max = 10)
     @Pattern(regexp = "^\\d{5}(-\\d{4})?$", message = "Zip code must be a valid US zip code")
-    @Column(name = "zip_code")
+    @Column(name = "zip_code", length = 10)
     private String zipCode;
 
-    @NotNull(message = "Address type cannot be null")
+    @NotNull(message = "Address type cannot be null or blank")
     @Enumerated(EnumType.STRING)
     @Column(name = "address_type", nullable = false)
     private AddressType type;
