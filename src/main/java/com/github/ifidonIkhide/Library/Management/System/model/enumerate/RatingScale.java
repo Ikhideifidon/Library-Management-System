@@ -1,45 +1,45 @@
 package com.github.ifidonIkhide.Library.Management.System.model.enumerate;
 
 public enum RatingScale {
-    ONE_TO_FIVE("1-5", new NonNumericBasedRating[] {
-            NonNumericBasedRating.ONE,
-            NonNumericBasedRating.TWO,
-            NonNumericBasedRating.THREE,
-            NonNumericBasedRating.FOUR,
-            NonNumericBasedRating.FIVE
+    ONE_TO_FIVE("1-5", new Measure[] {
+            Measure.ONE,
+            Measure.TWO,
+            Measure.THREE,
+            Measure.FOUR,
+            Measure.FIVE
     }),
-    ONE_TO_TEN("1-10", new NonNumericBasedRating[] {
-            NonNumericBasedRating.ONE,
-            NonNumericBasedRating.TWO,
-            NonNumericBasedRating.THREE,
-            NonNumericBasedRating.FOUR,
-            NonNumericBasedRating.FIVE,
-            NonNumericBasedRating.SIX,
-            NonNumericBasedRating.SEVEN,
-            NonNumericBasedRating.EIGHT,
-            NonNumericBasedRating.NINE,
-            NonNumericBasedRating.TEN
+    ONE_TO_TEN("1-10", new Measure[] {
+            Measure.ONE,
+            Measure.TWO,
+            Measure.THREE,
+            Measure.FOUR,
+            Measure.FIVE,
+            Measure.SIX,
+            Measure.SEVEN,
+            Measure.EIGHT,
+            Measure.NINE,
+            Measure.TEN
     }),
 
-    UNSATISFACTORY_TO_EXCELLENT("Unsatisfactory-Excellent", new NonNumericBasedRating[] {
-            NonNumericBasedRating.UNSATISFACTORY,
-            NonNumericBasedRating.BELOW_AVERAGE,
-            NonNumericBasedRating.SATISFACTORY,
-            NonNumericBasedRating.ABOVE_AVERAGE,
-            NonNumericBasedRating.EXCELLENT
+    UNSATISFACTORY_TO_EXCELLENT("Unsatisfactory-Excellent", new Measure[] {
+            Measure.UNSATISFACTORY,
+            Measure.BELOW_AVERAGE,
+            Measure.SATISFACTORY,
+            Measure.ABOVE_AVERAGE,
+            Measure.EXCELLENT
     }),
-    POOR_TO_OUTSTANDING("Poor-Outstanding", new NonNumericBasedRating[] {
-            NonNumericBasedRating.POOR,
-            NonNumericBasedRating.BELOW_AVERAGE,
-            NonNumericBasedRating.AVERAGE,
-            NonNumericBasedRating.ABOVE_AVERAGE,
-            NonNumericBasedRating.OUTSTANDING
+    POOR_TO_OUTSTANDING("Poor-Outstanding", new Measure[] {
+            Measure.POOR,
+            Measure.BELOW_AVERAGE,
+            Measure.AVERAGE,
+            Measure.ABOVE_AVERAGE,
+            Measure.OUTSTANDING
     });
 
     private final String displayName;
-    private final NonNumericBasedRating[] ratingValues;
+    private final Measure[] ratingValues;
 
-    RatingScale(String displayName, NonNumericBasedRating[] ratingValues) {
+    RatingScale(String displayName, Measure[] ratingValues) {
         this.displayName = displayName;
         this.ratingValues = ratingValues;
     }
@@ -52,7 +52,16 @@ public enum RatingScale {
         return displayName;
     }
 
-    public NonNumericBasedRating[] getRatingValues() {
+    public Measure[] getRatingValues() {
         return ratingValues;
+    }
+
+    public Measure getMeasureForValue(int value) {
+        for (Measure measure : ratingValues) {
+            if (measure.getValue() == value) {
+                return measure;
+            }
+        }
+        return null;
     }
 }

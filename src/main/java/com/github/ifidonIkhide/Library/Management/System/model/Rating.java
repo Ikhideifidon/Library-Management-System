@@ -1,6 +1,7 @@
 package com.github.ifidonIkhide.Library.Management.System.model;
 
 import com.github.ifidonIkhide.Library.Management.System.model.enumerate.Criteria;
+import com.github.ifidonIkhide.Library.Management.System.model.enumerate.Measure;
 import com.github.ifidonIkhide.Library.Management.System.model.enumerate.RatingScale;
 import com.github.ifidonIkhide.Library.Management.System.model.enumerate.RatingStatus;
 import jakarta.persistence.*;
@@ -9,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Entity
 @Table(name = "rating")
@@ -67,6 +69,29 @@ public class Rating {
             this.evaluator = evaluator;
         else
             throw new IllegalArgumentException("Evaluator must be a Supervisor and not the Employee being rated or the Manager.");
+    }
+
+    public int getOverallRating(Map<Criteria, Measure> criteriaScore) {
+        // Assume the Supervisor chose this scale: RatingScale ratingScale = RatingScale.POOR_TO_OUTSTANDING;
+        criteriaScore.put(Criteria.JOB_KNOWLEDGE, Measure.SATISFACTORY);
+        criteriaScore.put(Criteria.COMMUNICATION_SKILLS, Measure.BELOW_AVERAGE);
+        criteriaScore.put(Criteria.INITIATIVE, Measure.SATISFACTORY);
+        criteriaScore.put(Criteria.ADAPTABILITY, Measure.ABOVE_AVERAGE);
+        criteriaScore.put(Criteria.TEAMWORK, Measure.OUTSTANDING);
+        criteriaScore.put(Criteria.CUSTOMER_SERVICE, Measure.SATISFACTORY);
+        criteriaScore.put(Criteria.TIME_MANAGEMENT, Measure.SATISFACTORY);
+        criteriaScore.put(Criteria.LEADERSHIP, Measure.ABOVE_AVERAGE);
+        criteriaScore.put(Criteria.PROBLEM_SOLVING, Measure.SATISFACTORY);
+        criteriaScore.put(Criteria.DEPENDABILITY, Measure.OUTSTANDING);
+
+        int count = Criteria.values().length;
+        int sum = 0;
+        for (Measure measure : criteriaScore.values()) {
+            if (measure != null)
+                sum += measure.getValue();
+        }
+        overallRating = count > 0 ? Math.round(sum / (float) count) : 0;
+        return overallRating;
     }
 
 }

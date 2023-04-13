@@ -1,6 +1,6 @@
 package com.github.ifidonIkhide.Library.Management.System.model.enumerate;
 
-public enum NonNumericBasedRating {
+public enum Measure {
     ONE("One", 1),
     TWO("Two", 2),
     THREE("Three", 3),
@@ -24,7 +24,7 @@ public enum NonNumericBasedRating {
     private final String displayName;
     private final int value;
 
-    NonNumericBasedRating(String displayName, int value) {
+    Measure(String displayName, int value) {
         this.displayName = displayName;
         this.value = value;
     }
